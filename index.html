@@ -1,11 +1,336 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>Lilian's Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilian - 数据分析作品集</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f7f9fc;
+            --surface: #ffffff;
+            --text: #1f2937;
+            --muted: #667085;
+            --line: #d9e2ec;
+            --accent: #2563eb;
+            --accent-soft: #e8f0ff;
+            --tag: #eef4ff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            width: min(1080px, calc(100% - 32px));
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .hero {
+            display: grid;
+            gap: 28px;
+            padding: 56px 0 44px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .eyebrow {
+            width: fit-content;
+            margin: 0;
+            padding: 6px 12px;
+            border-radius: 999px;
+            color: var(--accent);
+            background: var(--accent-soft);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(42px, 8vw, 76px);
+            line-height: 1;
+            letter-spacing: 0;
+        }
+
+        .hero h2 {
+            margin: 0;
+            max-width: 720px;
+            color: #344054;
+            font-size: clamp(22px, 4vw, 34px);
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .hero p {
+            max-width: 760px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            background: var(--text);
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .button.secondary {
+            border: 1px solid var(--line);
+            background: var(--surface);
+            color: var(--text);
+        }
+
+        section {
+            padding: 44px 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            align-items: end;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .section-header p {
+            max-width: 560px;
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .project-card {
+            display: grid;
+            gap: 18px;
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--surface);
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .project-card h3 {
+            margin: 0 0 8px;
+            font-size: 24px;
+        }
+
+        .project-card p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .status {
+            flex: 0 0 auto;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: #fff7ed;
+            color: #b45309;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .project-points,
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 12px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .project-points li,
+        .skills li {
+            min-height: 48px;
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: var(--tag);
+            color: #344054;
+            font-weight: 700;
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .about-block {
+            padding: 24px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--surface);
+        }
+
+        .about-block h2 {
+            margin: 0 0 12px;
+            font-size: 24px;
+        }
+
+        .about-block p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        footer {
+            padding: 28px 0 8px;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        @media (max-width: 820px) {
+            .page {
+                width: min(100% - 24px, 680px);
+                padding: 24px 0;
+            }
+
+            .hero {
+                padding: 36px 0 32px;
+            }
+
+            .section-header,
+            .project-top,
+            .about {
+                display: grid;
+            }
+
+            .project-points,
+            .skills {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 520px) {
+            .hero-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .project-points,
+            .skills {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, I'm Lilian</h1>
-    <p>This is my personal website.</p>
+    <main class="page">
+        <section class="hero" aria-labelledby="intro-title">
+            <p class="eyebrow">数据分析作品集 · 持续更新中</p>
+            <h1 id="intro-title">Lilian</h1>
+            <h2>数据分析学习者，正在用真实练习项目积累分析思路、业务理解和可视化表达。</h2>
+            <p>
+                我关注如何从数据中发现问题、拆解指标，并把分析结果整理成清晰可读的结论。
+                目前主要围绕 Excel 数据整理、数据清洗、业务分析和可视化表达持续练习。
+            </p>
+            <div class="hero-actions">
+                <a class="button" href="#projects">查看项目</a>
+                <a class="button secondary" href="https://github.com/lilian0223" target="_blank" rel="noopener">访问 GitHub</a>
+            </div>
+        </section>
+
+        <section id="projects" aria-labelledby="projects-title">
+            <div class="section-header">
+                <h2 id="projects-title">项目展示</h2>
+                <p>这里会逐步整理数据分析练习和项目案例，记录从数据处理到洞察表达的完整过程。</p>
+            </div>
+
+            <article class="project-card">
+                <div class="project-top">
+                    <div>
+                        <h3>SKU 销售数据分析</h3>
+                        <p>
+                            一个围绕商品销售数据的练习项目，将从销售表现、SKU 对比、趋势变化和业务洞察等角度进行分析。
+                        </p>
+                    </div>
+                    <span class="status">进行中</span>
+                </div>
+                <ul class="project-points" aria-label="项目分析方向">
+                    <li>销售表现</li>
+                    <li>SKU 对比</li>
+                    <li>趋势观察</li>
+                    <li>指标拆解</li>
+                    <li>业务洞察</li>
+                </ul>
+            </article>
+        </section>
+
+        <section aria-labelledby="skills-title">
+            <div class="section-header">
+                <h2 id="skills-title">技能方向</h2>
+                <p>第一版先聚焦数据分析的基础能力，后续会随着项目增加继续补充。</p>
+            </div>
+            <ul class="skills">
+                <li>Excel 数据整理与分析</li>
+                <li>数据清洗</li>
+                <li>指标拆解</li>
+                <li>可视化表达</li>
+                <li>业务问题分析</li>
+            </ul>
+        </section>
+
+        <section class="about" aria-label="个人说明和联系入口">
+            <div class="about-block">
+                <h2>关于这个网站</h2>
+                <p>
+                    这是一个正在成长中的数据分析作品集。它会从练习项目开始，慢慢沉淀成可以展示分析过程、
+                    思考方法和业务理解的个人空间。
+                </p>
+            </div>
+            <div class="about-block">
+                <h2>GitHub</h2>
+                <p>
+                    项目代码和后续更新会整理在 GitHub：
+                    <a href="https://github.com/lilian0223" target="_blank" rel="noopener">github.com/lilian0223</a>
+                </p>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 Lilian. 数据分析作品集持续更新中。</p>
+        </footer>
+    </main>
 </body>
 </html>
